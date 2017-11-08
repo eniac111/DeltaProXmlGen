@@ -1,0 +1,7 @@
+<RCC>
+    <qresource prefix="/graphics/logo">
+        <file>graphics/nebopassgen.svg</file>
+        <file>graphics/blago.jpg</file>
+        <file>graphics/icon.svg</file>
+    </qresource>
+</RCC>
