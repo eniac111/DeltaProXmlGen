@@ -70,7 +70,14 @@ int MainWindow::ReadExcel(QString file)
         QVector<QString> tmp;
         for(int col=0; col<=num_of_col; col++){
             if( QXlsx::Cell *cell = xlsx->cellAt(row, col)) {
-                tmp.push_back(cell->value().toString());
+                if(row == 0 || row == 9) {
+                    tmp.push_back(cell->formula().formulaText());
+                    qDebug(cell->formula().formulaText().toLatin1());
+                }
+                else {
+                    tmp.push_back(cell->value().toString());
+//                    qDebug("Value" + cell->value().toString().toLatin1());
+                }
 //                qDebug("tmp RAZMER: %i", tmp.size());
             }
         }

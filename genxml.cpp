@@ -20,13 +20,16 @@ int GenXML::Convert () {
 
 //    for( int i=0; i<tabledata.size(); i++) {
 
-//        if(tabledata[i][1] == QString("Фактура")) {
+//        if(tabledata[i][0] == QString("Фактура")) {
 //            qDebug("FAKTURA");
 //        }
 //        else {
 //            qDebug("NE E FAKTURA");
 //        }
+//        qDebug("%s", tabledata[i][1]);
 //    }
+
+    qDebug(tabledata[2][0].toLatin1());
 
     return 0;
 }

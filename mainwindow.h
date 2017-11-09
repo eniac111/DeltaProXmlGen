@@ -16,6 +16,7 @@
 #include <QtXlsx>
 #include <QMessageBox>
 #include <QDomDocument>
+#include <QDateTime>
 #include "genxml.h"
 
 namespace Ui {
