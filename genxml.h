@@ -1,11 +1,11 @@
 #ifndef GENXML_H
 #define GENXML_H
 #include <QString>
-#include <QMap>
 #include <QVector>
 #include <QtXml>
 #include <QDomDocument>
 #include <QDomElement>
+#include <QMessageBox>
 
 
 class GenXML

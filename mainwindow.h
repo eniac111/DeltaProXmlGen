@@ -13,7 +13,6 @@
 #include <QFile>
 #include <QDir>
 #include <QDebug>
-#include <QtXlsx>
 #include <QMessageBox>
 #include <QDomDocument>
 #include <QDateTime>

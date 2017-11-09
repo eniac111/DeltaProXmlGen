@@ -34,7 +34,7 @@ void MainWindow::on_actionExit_triggered()
 
 void MainWindow::on_BtnBrowse_clicked()
 {
-    QString filepath = QFileDialog::getOpenFileName(this, "Open a file for encryption", QString(), "Excel Spreadsheets (*.xlsx)");
+    QString filepath = QFileDialog::getOpenFileName(this, "Open a file for encryption", QString(), "Comma Separated Value Files (*.csv)");
     filename = filepath;
     ui->FileLabel->setText(filepath.section("/",-1,-1));
 
@@ -49,50 +49,34 @@ void MainWindow::on_actionAbout_triggered()
 
 int MainWindow::ReadExcel(QString file)
 {
-
-    QXlsx::Document *xlsx = new QXlsx::Document(file);
     QString xmlfile = file.left(file.length()-1) + QString(".xml");
-    int num_of_row = xlsx->dimension().lastRow();
-    int num_of_col = xlsx->dimension().lastColumn();
-    qDebug("num of row: %i", num_of_row);
-    qDebug("num of col: %i", num_of_col);
     QVector<QVector<QString>> xlsdata;
-
-//    if (xlsx.rowHeight(3) != 15) {
-//        QMessageBox::warning(this, tr("Warning: Incorrect format"),
-//                             tr("The number of cells does not match the format of the document!"),
-//                             QMessageBox::Ok);
-//        return 2;
-//    }
-
-    for(int row=2; row <= num_of_row; ++row)
-    {
-        QVector<QString> tmp;
-        for(int col=0; col<=num_of_col; col++){
-            if( QXlsx::Cell *cell = xlsx->cellAt(row, col)) {
-                if(row == 0 || row == 9) {
-                    tmp.push_back(cell->formula().formulaText());
-                    qDebug(cell->formula().formulaText().toLatin1());
-                }
-                else {
-                    tmp.push_back(cell->value().toString());
-//                    qDebug("Value" + cell->value().toString().toLatin1());
-                }
-//                qDebug("tmp RAZMER: %i", tmp.size());
-            }
-        }
-        xlsdata.push_back(tmp);
-        tmp.clear();
-//        qDebug("xlsdata RAZMER: %i", xlsdata.size());
-
+    QFile csvf(file);
+    if (!csvf.open(QIODevice::ReadOnly)) {
+        qDebug () << csvf.errorString();
+        return 1;
     }
+
+    QTextStream csvstr(&csvf);
+    csvstr.setCodec("UTF-8");
+
+    while(!csvstr.atEnd())
+    {
+        QString line = csvstr.readLine();
+            xlsdata.push_back(line.split(',').toVector());
+    }
+
+    csvf.close();
 
     GenXML *Generator = new GenXML(xlsdata, xmlfile);
     Generator->Convert();
     delete Generator;
 
+//     qDebug(xlsdata[100][0].toLatin1());
+
 
     return 0;
+
 }
 
 void MainWindow::on_BtnSaveAs_clicked()

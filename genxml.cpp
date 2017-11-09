@@ -16,20 +16,27 @@ int GenXML::Convert () {
 
     QDomElement Accountings = xmldoc.createElement("Accountings");
 
-//    qDebug("RAZMER: %i", tabledata[1].size());
+    qDebug("RAZMER: %i", tabledata[1].size());
 
-//    for( int i=0; i<tabledata.size(); i++) {
+    for( int i=0; i<tabledata.size(); i++) {
 
-//        if(tabledata[i][0] == QString("Фактура")) {
-//            qDebug("FAKTURA");
-//        }
-//        else {
-//            qDebug("NE E FAKTURA");
-//        }
-//        qDebug("%s", tabledata[i][1]);
-//    }
+        if(tabledata[i][0] == QString("Фактура").toUtf8()) {
+            qDebug("FAKTURA");
+        }
+        else {
+            qDebug("NE E FAKTURA");
+        }
+        qDebug("%s", tabledata[i][1]);
+    }
 
-    qDebug(tabledata[2][0].toLatin1());
+//    if(tabledata[1][0] == QString("Фактура").toUtf8())
+//            qDebug("FAKTURA E");
+
+//    QMessageBox msgBox;
+//    msgBox.setWindowTitle("foo");
+//    msgBox.setText(tabledata[1][0]);
+//    msgBox.exec();
+////    qDebug(tabledata[1][0].toLatin1());
 
     return 0;
 }
