@@ -16,6 +16,7 @@
 #include <QtXlsx>
 #include <QMessageBox>
 #include <QDomDocument>
+#include "genxml.h"
 
 namespace Ui {
 class MainWindow;

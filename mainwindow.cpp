@@ -54,6 +54,8 @@ int MainWindow::ReadExcel(QString file)
     QString xmlfile = file.left(file.length()-1) + QString(".xml");
     int num_of_row = xlsx->dimension().lastRow();
     int num_of_col = xlsx->dimension().lastColumn();
+    qDebug("num of row: %i", num_of_row);
+    qDebug("num of col: %i", num_of_col);
     QVector<QVector<QString>> xlsdata;
 
 //    if (xlsx.rowHeight(3) != 15) {
@@ -65,19 +67,22 @@ int MainWindow::ReadExcel(QString file)
 
     for(int row=2; row <= num_of_row; ++row)
     {
+        QVector<QString> tmp;
         for(int col=0; col<=num_of_col; col++){
             if( QXlsx::Cell *cell = xlsx->cellAt(row, col)) {
-                QVector<QString> tmp;
                 tmp.push_back(cell->value().toString());
-                xlsdata.push_back(tmp);
+//                qDebug("tmp RAZMER: %i", tmp.size());
             }
         }
-        }
+        xlsdata.push_back(tmp);
+        tmp.clear();
+//        qDebug("xlsdata RAZMER: %i", xlsdata.size());
 
+    }
 
-//    QFile file(xmlfile);
-//    if (!file.open(QIODevice::WriteOnly | QIODevice::Text))
-//        return 0;
+    GenXML *Generator = new GenXML(xlsdata, xmlfile);
+    Generator->Convert();
+    delete Generator;
 
 
     return 0;

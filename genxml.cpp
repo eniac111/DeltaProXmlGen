@@ -1,8 +1,9 @@
 #include "genxml.h"
 
-GenXML::GenXML( QVector<QVector<QString>> data )
+GenXML::GenXML( QVector<QVector<QString>> data, QString file )
 {
-    QVector<QVector<QString>> tabledata = data;
+    tabledata = data;
+    xmlfile = file;
 }
 
 
@@ -14,8 +15,17 @@ int GenXML::Convert () {
     TransferData.setAttribute("xmlns", "urn:Transfer");
 
     QDomElement Accountings = xmldoc.createElement("Accountings");
-//    for( int i=0; i<= tabledata.length(); i++) {
-//        if(tabledata[i][])
+
+//    qDebug("RAZMER: %i", tabledata[1].size());
+
+//    for( int i=0; i<tabledata.size(); i++) {
+
+//        if(tabledata[i][1] == QString("Фактура")) {
+//            qDebug("FAKTURA");
+//        }
+//        else {
+//            qDebug("NE E FAKTURA");
+//        }
 //    }
 
     return 0;
