@@ -40,7 +40,7 @@ private:
     QString filename = "";
     int ReadExcel(QString file);
     int WriteXML();
-    QVector<QMap<QString, QString> >  tabledata;
+    QVector<QVector<QString>>  *tabledata = new QVector<QVector<QString>>;
 };
 
 #endif // MAINWINDOW_H

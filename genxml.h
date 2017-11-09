@@ -11,11 +11,11 @@
 class GenXML
 {
 public:
-    GenXML( QVector<QMap<QString, QString>> data);
+    GenXML( QVector<QVector< QString>> data);
     int Convert();
 
 private:
-    QVector<QMap<QString, QString>> tabledata;
+   QVector<QVector<QString>> tabledata;
 
 };
 

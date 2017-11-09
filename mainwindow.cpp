@@ -51,13 +51,10 @@ int MainWindow::ReadExcel(QString file)
 {
 
     QXlsx::Document *xlsx = new QXlsx::Document(file);
-    int cellcount = 2;
     QString xmlfile = file.left(file.length()-1) + QString(".xml");
     int num_of_row = xlsx->dimension().lastRow();
     int num_of_col = xlsx->dimension().lastColumn();
-
-//    qDebug()<<xlsx.rowHeight(3);
-//    qDebug()<< xlsx->read("A1");
+    QVector<QVector<QString>> xlsdata;
 
 //    if (xlsx.rowHeight(3) != 15) {
 //        QMessageBox::warning(this, tr("Warning: Incorrect format"),
@@ -66,61 +63,16 @@ int MainWindow::ReadExcel(QString file)
 //        return 2;
 //    }
 
-
-    qDebug()<<xlsx.rowHeight(2);
-    qDebug()<< "H6 should be empty:__ " << xlsx.read("H6");
-    qDebug()<<xlsx.read("C4");
-    qDebug()<<xlsx.read("B4");
-    qDebug()<<xlsx.read("A6");
-    qDebug()<<xlsx.read("A7");
-
-    while (true)
+    for(int row=2; row <= num_of_row; ++row)
     {
-        QMap<QString, QString> tmp;
-        tmp["A"] = xlsx.read(QString("A%1").arg(cellcount));
-        tmp["B"] = xlsx.read("B" + QString::number(cellcount)).toString();
-        tmp["C"] = xlsx.read("C" + QString::number(cellcount)).toString();
-        tmp["D"] = xlsx.read("D" + QString::number(cellcount)).toString();
-        tmp["E"] = xlsx.read("E" + QString::number(cellcount)).toString();
-        tmp["F"] = xlsx.read("F" + QString::number(cellcount)).toString();
-        tmp["G"] = xlsx.read("G" + QString::number(cellcount)).toString();
-        tmp["H"] = xlsx.read("H" + QString::number(cellcount)).toString();
-        tmp["I"] = xlsx.read("I" + QString::number(cellcount)).toString();
-        tmp["J"] = xlsx.read("J" + QString::number(cellcount)).toString();
-        tmp["K"] = xlsx.read("K" + QString::number(cellcount)).toString();
-        tmp["L"] = xlsx.read("L" + QString::number(cellcount)).toString();
-        tmp["M"] = xlsx.read("M" + QString::number(cellcount)).toString();
-        tmp["N"] = xlsx.read("N" + QString::number(cellcount)).toString();
-
-        if(
-                tmp["A"] == QString("") &&
-                tmp["B"] == QString("") &&
-                tmp["C"] == QString("") &&
-                tmp["D"] == QString("") &&
-                tmp["E"] == QString("") &&
-                tmp["F"] == QString("") &&
-                tmp["G"] == QString("") &&
-                tmp["H"] == QString("") &&
-                tmp["I"] == QString("") &&
-                tmp["J"] == QString("") &&
-                tmp["K"] == QString("") &&
-                tmp["L"] == QString("") &&
-                tmp["M"] == QString("") &&
-                tmp["N"] == QString("")
-                )
-        {
-            break;
+        for(int col=0; col<=num_of_col; col++){
+            if( QXlsx::Cell *cell = xlsx->cellAt(row, col)) {
+                QVector<QString> tmp;
+                tmp.push_back(cell->value().toString());
+                xlsdata.push_back(tmp);
+            }
         }
-        else {
-            tabledata.append(tmp);
-            qDebug("Count: %d",tabledata.count());
-            cellcount++;
         }
-
-    }
-
-    qDebug("LastValue: %s", tabledata[5]["J"]);
-    ui->FileLabel->setText(tabledata[5]["A"]);
 
 
 //    QFile file(xmlfile);

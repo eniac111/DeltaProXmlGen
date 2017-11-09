@@ -1,8 +1,8 @@
 #include "genxml.h"
 
-GenXML::GenXML( QVector<QMap<QString, QString>> data )
+GenXML::GenXML( QVector<QVector<QString>> data )
 {
-    QVector<QMap<QString, QString>> tabledata = data;
+    QVector<QVector<QString>> tabledata = data;
 }
 
 
