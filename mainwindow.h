@@ -17,6 +17,7 @@
 #include <QDomDocument>
 #include <QDateTime>
 #include "genxml.h"
+#include "metainfo.h"
 
 namespace Ui {
 class MainWindow;
@@ -38,7 +39,7 @@ private slots:
 
 private:
     Ui::MainWindow *ui;
-    QString filename = "";
+    QString filename;
     int ReadExcel(QString file);
     int WriteXML();
     QVector<QVector<QString>>  *tabledata = new QVector<QVector<QString>>;

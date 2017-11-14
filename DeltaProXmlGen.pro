@@ -24,7 +24,8 @@ SOURCES += main.cpp\
 
 HEADERS  += mainwindow.h \
     about.h \w \
-    genxml.h
+    genxml.h \
+    metainfo.h
     mainwindow.h
 
 FORMS    += mainwindow.ui \

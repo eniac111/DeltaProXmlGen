@@ -6,7 +6,7 @@ MainWindow::MainWindow(QWidget *parent) :
     ui(new Ui::MainWindow)
 {
     ui->setupUi(this);
-    this->setWindowTitle("DeltaPro XML Generator");
+    this->setWindowTitle("DP XML Generator " + APP_VERSION);
     this->setFixedSize(500,260);
     this->setGeometry(QStyle::alignedRect(
                           Qt::LeftToRight,
@@ -49,7 +49,8 @@ void MainWindow::on_actionAbout_triggered()
 
 int MainWindow::ReadExcel(QString file)
 {
-    QString xmlfile = file.left(file.length()-1) + QString(".xml");
+    QString xmlfile = file.left(file.length()-3) + QString("xml");
+    qDebug (xmlfile.toLatin1());
     QVector<QVector<QString>> xlsdata;
     QFile csvf(file);
     if (!csvf.open(QIODevice::ReadOnly)) {
@@ -63,7 +64,7 @@ int MainWindow::ReadExcel(QString file)
     while(!csvstr.atEnd())
     {
         QString line = csvstr.readLine();
-            xlsdata.push_back(line.split(',').toVector());
+            xlsdata.push_back(line.split(':').toVector());
     }
 
     csvf.close();

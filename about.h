@@ -4,6 +4,7 @@
 #include <QDialog>
 #include <QDesktopWidget>
 #include <QStyle>
+#include "metainfo.h"
 
 namespace Ui {
 class About;

@@ -14,7 +14,7 @@
    <string>MainWindow</string>
   </property>
   <property name="windowOpacity">
-   <double>0.500000000000000</double>
+   <double>1.000000000000000</double>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QWidget" name="horizontalLayoutWidget">
@@ -27,13 +27,6 @@
      </rect>
     </property>
     <layout class="QHBoxLayout" name="horizontalLayout">
-     <item>
-      <widget class="QPushButton" name="BtnGenPass">
-       <property name="text">
-        <string>Save As..</string>
-       </property>
-      </widget>
-     </item>
      <item>
       <widget class="QPushButton" name="BtnSaveAs">
        <property name="text">
@@ -54,7 +47,7 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>0</y>
+      <y>40</y>
       <width>469</width>
       <height>89</height>
      </rect>

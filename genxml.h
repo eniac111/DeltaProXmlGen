@@ -5,7 +5,9 @@
 #include <QtXml>
 #include <QDomDocument>
 #include <QDomElement>
-#include <QMessageBox>
+#include <QFile>
+#include <QTextStream>
+
 
 
 class GenXML
@@ -17,6 +19,7 @@ public:
     int Convert();
 
 private:
+    QString current_date();
 
 };
 
