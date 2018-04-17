@@ -14,12 +14,7 @@ MainWindow::MainWindow(QWidget *parent) :
                           this->size(),
                           qApp->desktop()->availableGeometry()
                           ));
-//    if (QCoreApplication::arguments().length() >=2) {
-//        QString argvstr = QCoreApplication::arguments().at(1);
-//        filename = argvstr.section("/",-1,-1);
-//        ui->FileLabel->setText(filename);
-//        doEncrypt(QString(filename));
-//    }
+    ui->giphy->setAttribute(Qt::WA_NoSystemBackground);
 }
 
 MainWindow::~MainWindow()
@@ -82,5 +77,9 @@ int MainWindow::ReadExcel(QString file)
 
 void MainWindow::on_BtnSaveAs_clicked()
 {
+    QMovie *coffee = new QMovie(":graphics/graphics/dancing_coffee.gif");
+    ui->giphy->setMovie(coffee);
+    coffee->start();
     ReadExcel(filename);
+
 }

@@ -6,6 +6,7 @@ load(qt_build_config)
 MODULE_VERSION = 0.3.0
 
 QT       += core gui xml
+QTPLUGIN += gif
 
 #CONFIG += static
 
@@ -31,6 +32,7 @@ HEADERS  += mainwindow.h \
 FORMS    += mainwindow.ui \
     about.ui
 
-#RESOURCES += \
-#    logo.qrc
+RESOURCES += \
+    graphics.qrc
+
 

@@ -18,6 +18,8 @@
 #include <QDateTime>
 #include "genxml.h"
 #include "metainfo.h"
+#include <QMovie>
+#include <QImageReader>
 
 namespace Ui {
 class MainWindow;

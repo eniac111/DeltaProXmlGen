@@ -39,6 +39,7 @@ int GenXML::Convert () {
         QDomElement Accounting = xmldoc.createElement("Accounting");
         Accounting.setAttribute("AccountingDate",  tabledata[i][1]);
         Accounting.setAttribute("Term", "Продажба на СМЦ");
+        Accounting.setAttribute("Reference", tabledata[i][3]);
         Accountings.appendChild(Accounting);
 
         QDomElement Document = xmldoc.createElement("Document");
@@ -62,7 +63,7 @@ int GenXML::Convert () {
 //                qDebug(tabledata[i][7].toLatin1());
             }
             else if(j == 1) {
-                detail_number = "453/5";
+                detail_number = "453/4";
                 direction = "Credit";
                 sum = tabledata[i][8].replace(",", ".");
 //                qDebug(tabledata[i][8].toLatin1());
@@ -98,6 +99,11 @@ int GenXML::Convert () {
     stream.setCodec("UTF-8");
     stream << xmldoc.toString();
     outfile.close();
+
+    QMessageBox *BoxDone = new QMessageBox;
+    BoxDone->setInformativeText("The file is converted!");
+    BoxDone->setStandardButtons(QMessageBox::Ok);
+    BoxDone->exec();
     return 0;
 }
 

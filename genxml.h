@@ -7,6 +7,7 @@
 #include <QDomElement>
 #include <QFile>
 #include <QTextStream>
+#include <QMessageBox>
 
 
 

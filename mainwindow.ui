@@ -47,13 +47,26 @@
     <property name="geometry">
      <rect>
       <x>10</x>
-      <y>40</y>
+      <y>150</y>
       <width>469</width>
-      <height>89</height>
+      <height>21</height>
      </rect>
     </property>
     <property name="text">
      <string>No File Selected</string>
+    </property>
+   </widget>
+   <widget class="QLabel" name="giphy">
+    <property name="geometry">
+     <rect>
+      <x>190</x>
+      <y>0</y>
+      <width>150</width>
+      <height>150</height>
+     </rect>
+    </property>
+    <property name="text">
+     <string/>
     </property>
    </widget>
   </widget>
